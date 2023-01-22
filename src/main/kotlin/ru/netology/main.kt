@@ -11,13 +11,17 @@ data class Post(
     var canPin: Boolean = false, //Информация о том, может ли текущий пользователь закрепить запись
     var canDelete: Boolean = false, // Информация о том, может ли текущий пользователь удалить запись
     var canEdit: Boolean = false, //Информация о том, может ли текущий пользователь редактировать запись
-//    var likes: Likes,
+    var likes: Likes,
 )
 
 class Likes(
     var count: Int = 0, //число пользователей, которым понравилась запись
     var userLikes: Boolean = false, //наличие отметки «Мне нравится» от текущего пользователя
-    )
+) {
+    override fun toString(): String {
+      return count.toString()
+    }
+}
 
 object WallService {
 
@@ -33,22 +37,22 @@ object WallService {
     fun update(post: Post): Boolean { //функция обновления поста
         for ((index, postUpdate) in posts.withIndex()) {
             if (post.id == postUpdate.id) {
-                posts.set(index, post.copy(ownerId = post.ownerId + 1))
+                posts.set(index, post.copy(id = post.id + 1, fromId = post.fromId, text = post.text + " ",
+                    replyOwnerId = post.replyOwnerId + 1, replyPostId = post.replyPostId + 1, canPin = !post.canPin,
+                    canDelete = !post.canDelete, canEdit = !post.canEdit, likes = Likes(2, false)))
                 return true
             }
         }
         return false
     }
 
+    fun clear() { // метод очистки
+        posts = emptyArray()
+    }
 }
 
 fun main() {
-    val post = Post()
-    WallService.add(post)
-    println(post)
 
-    WallService.update(post)
-    println(post)
 }
 
 
