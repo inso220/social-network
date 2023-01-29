@@ -1,4 +1,4 @@
-package ru.netology.attachments
+package ru.netology.post.attachments
 
 class Audio(
     override val type: String = "audio",

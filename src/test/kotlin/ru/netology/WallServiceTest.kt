@@ -2,13 +2,13 @@ package ru.netology
 
 import org.junit.Before
 import org.junit.Test
-import ru.netology.attachments.Attachments
-import ru.netology.attachments.Audio
-import ru.netology.attachments.AudioAttachment
-import ru.netology.post.Donut
-import ru.netology.post.Likes
-import ru.netology.post.Post
-import ru.netology.post.Views
+import ru.netology.exceptions.CommentNotFoundException
+import ru.netology.exceptions.PostNotFoundException
+import ru.netology.exceptions.ReasonNotFound
+import ru.netology.post.*
+import ru.netology.post.attachments.Attachments
+import ru.netology.post.attachments.Audio
+import ru.netology.post.attachments.AudioAttachment
 import kotlin.test.assertEquals
 
 class WallServiceTest {
@@ -64,5 +64,95 @@ class WallServiceTest {
         val result = WallService.update(post)
 
         assertEquals(true, result)
+    }
+
+    @Test
+    fun createCommentCorrect() {
+        val likesCount = Likes()
+        val isDonut = Donut()
+        val viewsCount = Views()
+        val audioAttachment1 = AudioAttachment()
+        val audio1 = Audio(audioAttachment = audioAttachment1)
+        var array = arrayOf<Attachments>(audio1)
+        val post = Post(likes = likesCount, donut = isDonut, views = viewsCount, attachments = array)
+        WallService.add(post)
+
+        var newComment = Comment()
+        val result = WallService.createComment(1, newComment)
+
+        assertEquals (newComment, result)
+    }
+
+    @Test(expected = PostNotFoundException::class)
+    fun shouldThrowPost() {
+        val likesCount = Likes()
+        val isDonut = Donut()
+        val viewsCount = Views()
+        val audioAttachment1 = AudioAttachment()
+        val audio1 = Audio(audioAttachment = audioAttachment1)
+        var array = arrayOf<Attachments>(audio1)
+        val post = Post(likes = likesCount, donut = isDonut, views = viewsCount, attachments = array)
+        WallService.add(post)
+
+        var newComment = Comment()
+        WallService.createComment(111, newComment)
+    }
+
+
+    @Test
+    fun createReportToCommentCorrect () {
+        val likesCount = Likes()
+        val isDonut = Donut()
+        val viewsCount = Views()
+        val audioAttachment1 = AudioAttachment()
+        val audio1 = Audio(audioAttachment = audioAttachment1)
+        var array = arrayOf<Attachments>(audio1)
+        val post = Post(likes = likesCount, donut = isDonut, views = viewsCount, attachments = array)
+        WallService.add(post)
+
+        var newComment = Comment()
+        WallService.createComment(1, newComment)
+
+        var newReport = Report(reason = 0)
+        WallService.createReportToComment(1, newReport)
+    }
+
+    @Test (expected = CommentNotFoundException::class)
+    fun shouldThrowComment () {
+        val likesCount = Likes()
+        val isDonut = Donut()
+        val viewsCount = Views()
+        val audioAttachment1 = AudioAttachment()
+        val audio1 = Audio(audioAttachment = audioAttachment1)
+        var array = arrayOf<Attachments>(audio1)
+        val post = Post(likes = likesCount, donut = isDonut, views = viewsCount, attachments = array)
+        WallService.add(post)
+
+        var newComment = Comment()
+        WallService.createComment(1, newComment)
+
+        var newReport = Report(reason = 0)
+        val result = WallService.createReportToComment(111, newReport)
+
+        assertEquals(newReport, result)
+    }
+
+
+    @Test (expected = ReasonNotFound::class)
+    fun shouldThrowReason() {
+        val likesCount = Likes()
+        val isDonut = Donut()
+        val viewsCount = Views()
+        val audioAttachment1 = AudioAttachment()
+        val audio1 = Audio(audioAttachment = audioAttachment1)
+        var array = arrayOf<Attachments>(audio1)
+        val post = Post(likes = likesCount, donut = isDonut, views = viewsCount, attachments = array)
+        WallService.add(post)
+
+        var newComment = Comment()
+        WallService.createComment(1, newComment)
+
+        var newReport = Report(reason = 10)
+        WallService.createReportToComment(1, newReport)
     }
 }
