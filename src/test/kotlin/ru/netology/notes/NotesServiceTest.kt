@@ -18,9 +18,7 @@ class NotesServiceTest {
 
     @Test
     fun add() {
-        val listOfNoteComments = mutableListOf<NoteComment>()
-        val listOfDeleteNoteComments = mutableMapOf<Int, NoteComment>()
-        val note = Notes(noteComments = listOfNoteComments, deleteComments = listOfDeleteNoteComments)
+        val note = Notes()
 
         val result = NotesService.add(note)
         assertEquals(result, 1)
@@ -28,9 +26,7 @@ class NotesServiceTest {
 
     @Test
     fun createCommentSuccessful() {
-        val listOfNoteComments = mutableListOf<NoteComment>()
-        val listOfDeleteNoteComments = mutableMapOf<Int, NoteComment>()
-        val note = Notes(noteComments = listOfNoteComments, deleteComments = listOfDeleteNoteComments)
+        val note = Notes()
         val comment = NoteComment ()
         NotesService.add(note)
 
@@ -40,9 +36,7 @@ class NotesServiceTest {
 
     @Test
     fun createCommentUnsuccessful() {
-        val listOfNoteComments = mutableListOf<NoteComment>()
-        val listOfDeleteNoteComments = mutableMapOf<Int, NoteComment>()
-        val note = Notes(noteComments = listOfNoteComments, deleteComments = listOfDeleteNoteComments)
+        val note = Notes()
         val comment = NoteComment ()
         NotesService.add(note)
 
@@ -52,9 +46,7 @@ class NotesServiceTest {
 
     @Test
     fun deleteSuccessful() {
-        val listOfNoteComments = mutableListOf<NoteComment>()
-        val listOfDeleteNoteComments = mutableMapOf<Int, NoteComment>()
-        val note = Notes(noteComments = listOfNoteComments, deleteComments = listOfDeleteNoteComments)
+        val note = Notes()
         NotesService.add(note)
 
         val result = NotesService.delete(note.id)
@@ -63,9 +55,7 @@ class NotesServiceTest {
 
     @Test
     fun deleteUnsuccessful() {
-        val listOfNoteComments = mutableListOf<NoteComment>()
-        val listOfDeleteNoteComments = mutableMapOf<Int, NoteComment>()
-        val note = Notes(noteComments = listOfNoteComments, deleteComments = listOfDeleteNoteComments)
+        val note = Notes()
 
         val result = NotesService.delete(note.id)
         assertEquals(result, false)
@@ -73,9 +63,7 @@ class NotesServiceTest {
 
     @Test
     fun deleteCommentSuccessful() {
-        val listOfNoteComments = mutableListOf<NoteComment>()
-        val listOfDeleteNoteComments = mutableMapOf<Int, NoteComment>()
-        val note = Notes(noteComments = listOfNoteComments, deleteComments = listOfDeleteNoteComments)
+        val note = Notes()
         val comment = NoteComment ()
         NotesService.add(note)
         NotesService.createComment(1, comment)
@@ -86,9 +74,7 @@ class NotesServiceTest {
 
     @Test
     fun deleteCommentUnsuccessful() {
-        val listOfNoteComments = mutableListOf<NoteComment>()
-        val listOfDeleteNoteComments = mutableMapOf<Int, NoteComment>()
-        val note = Notes(noteComments = listOfNoteComments, deleteComments = listOfDeleteNoteComments)
+        val note = Notes()
         val comment = NoteComment ()
         NotesService.add(note)
         NotesService.createComment(1, comment)
@@ -99,9 +85,7 @@ class NotesServiceTest {
 
     @Test(expected = CommentAlreadyDeletedException::class)
     fun shouldThrowDeleteComment() {
-        val listOfNoteComments = mutableListOf<NoteComment>()
-        val listOfDeleteNoteComments = mutableMapOf<Int, NoteComment>()
-        val note = Notes(noteComments = listOfNoteComments, deleteComments = listOfDeleteNoteComments)
+        val note = Notes()
         val comment = NoteComment ()
         NotesService.add(note)
         NotesService.createComment(1, comment)
@@ -111,9 +95,7 @@ class NotesServiceTest {
 
     @Test
     fun editSuccessful() {
-        val listOfNoteComments = mutableListOf<NoteComment>()
-        val listOfDeleteNoteComments = mutableMapOf<Int, NoteComment>()
-        val note = Notes(noteComments = listOfNoteComments, deleteComments = listOfDeleteNoteComments)
+        val note = Notes()
         NotesService.add(note)
 
         val result = NotesService.editNote(note, "new text", "new title")
@@ -122,9 +104,7 @@ class NotesServiceTest {
 
     @Test
     fun editUnsuccessful() {
-        val listOfNoteComments = mutableListOf<NoteComment>()
-        val listOfDeleteNoteComments = mutableMapOf<Int, NoteComment>()
-        val note = Notes(noteComments = listOfNoteComments, deleteComments = listOfDeleteNoteComments)
+        val note = Notes()
 
         val result = NotesService.editNote(note, "new text", "new title")
         assertEquals(result, false)
@@ -132,9 +112,7 @@ class NotesServiceTest {
 
     @Test
     fun editCommentSuccessful() {
-        val listOfNoteComments = mutableListOf<NoteComment>()
-        val listOfDeleteNoteComments = mutableMapOf<Int, NoteComment>()
-        val note = Notes(noteComments = listOfNoteComments, deleteComments = listOfDeleteNoteComments)
+        val note = Notes()
         val comment = NoteComment ()
         NotesService.add(note)
         NotesService.createComment(1, comment)
@@ -145,9 +123,7 @@ class NotesServiceTest {
 
     @Test
     fun editCommentUnsuccessful() {
-        val listOfNoteComments = mutableListOf<NoteComment>()
-        val listOfDeleteNoteComments = mutableMapOf<Int, NoteComment>()
-        val note = Notes(noteComments = listOfNoteComments, deleteComments = listOfDeleteNoteComments)
+        val note = Notes()
         val comment = NoteComment ()
         NotesService.add(note)
 
@@ -157,9 +133,7 @@ class NotesServiceTest {
 
     @Test(expected = CommentAlreadyDeletedException::class)
     fun shouldThrowEditComment() {
-        val listOfNoteComments = mutableListOf<NoteComment>()
-        val listOfDeleteNoteComments = mutableMapOf<Int, NoteComment>()
-        val note = Notes(noteComments = listOfNoteComments, deleteComments = listOfDeleteNoteComments)
+        val note = Notes()
         val comment = NoteComment ()
         NotesService.add(note)
         NotesService.createComment(1, comment)
@@ -169,9 +143,7 @@ class NotesServiceTest {
 
     @Test
     fun noteGetByIdSuccessful() {
-        val listOfNoteComments = mutableListOf<NoteComment>()
-        val listOfDeleteNoteComments = mutableMapOf<Int, NoteComment>()
-        val note = Notes(noteComments = listOfNoteComments, deleteComments = listOfDeleteNoteComments)
+        val note = Notes()
         NotesService.add(note)
 
         val result = NotesService.noteGetById(1)
@@ -180,9 +152,7 @@ class NotesServiceTest {
 
     @Test
     fun noteGetByIdUnsuccessful() {
-        val listOfNoteComments = mutableListOf<NoteComment>()
-        val listOfDeleteNoteComments = mutableMapOf<Int, NoteComment>()
-        val note = Notes(noteComments = listOfNoteComments, deleteComments = listOfDeleteNoteComments)
+        val note = Notes()
         NotesService.add(note)
 
         val result = NotesService.noteGetById(5)
@@ -191,9 +161,7 @@ class NotesServiceTest {
 
     @Test
     fun getCommentsOfNoteSuccessful() {
-        val listOfNoteComments = mutableListOf<NoteComment>()
-        val listOfDeleteNoteComments = mutableMapOf<Int, NoteComment>()
-        val note = Notes(noteComments = listOfNoteComments, deleteComments = listOfDeleteNoteComments)
+        val note = Notes()
         val comment = NoteComment ()
         NotesService.add(note)
         NotesService.createComment(1, comment)
@@ -204,9 +172,7 @@ class NotesServiceTest {
 
     @Test
     fun getCommentsOfNoteUnsuccessful() {
-        val listOfNoteComments = mutableListOf<NoteComment>()
-        val listOfDeleteNoteComments = mutableMapOf<Int, NoteComment>()
-        val note = Notes(noteComments = listOfNoteComments, deleteComments = listOfDeleteNoteComments)
+        val note = Notes()
         val comment = NoteComment ()
         NotesService.add(note)
         NotesService.createComment(1, comment)
@@ -217,9 +183,7 @@ class NotesServiceTest {
 
     @Test
     fun restoreCommentSuccessful() {
-        val listOfNoteComments = mutableListOf<NoteComment>()
-        val listOfDeleteNoteComments = mutableMapOf<Int, NoteComment>()
-        val note = Notes(noteComments = listOfNoteComments, deleteComments = listOfDeleteNoteComments)
+        val note = Notes()
         val comment = NoteComment ()
         NotesService.add(note)
         NotesService.createComment(1, comment)
@@ -231,9 +195,7 @@ class NotesServiceTest {
 
     @Test
     fun restoreCommentUnsuccessful() {
-        val listOfNoteComments = mutableListOf<NoteComment>()
-        val listOfDeleteNoteComments = mutableMapOf<Int, NoteComment>()
-        val note = Notes(noteComments = listOfNoteComments, deleteComments = listOfDeleteNoteComments)
+        val note = Notes()
         val comment = NoteComment ()
         NotesService.add(note)
         NotesService.createComment(1, comment)
@@ -245,9 +207,7 @@ class NotesServiceTest {
 
     @Test(expected = CommentIsNotDeleted::class)
     fun shouldThrowRestoreComment() {
-        val listOfNoteComments = mutableListOf<NoteComment>()
-        val listOfDeleteNoteComments = mutableMapOf<Int, NoteComment>()
-        val note = Notes(noteComments = listOfNoteComments, deleteComments = listOfDeleteNoteComments)
+        val note = Notes()
         val comment = NoteComment ()
         NotesService.add(note)
         NotesService.createComment(1, comment)
