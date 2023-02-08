@@ -1,4 +1,4 @@
-package ru.netology.post
+package ru.netology.wall.post
 
 class Report (
     val ownerId: Int = 0, //идентификатор пользователя или сообщества, которому принадлежит комментарий

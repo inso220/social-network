@@ -1,4 +1,4 @@
-package ru.netology.post.attachments
+package ru.netology.wall.post.attachments
 
 class Note (
     override val type: String = "note",

@@ -2,13 +2,14 @@ package ru.netology
 
 import org.junit.Before
 import org.junit.Test
-import ru.netology.exceptions.CommentNotFoundException
-import ru.netology.exceptions.PostNotFoundException
-import ru.netology.exceptions.ReasonNotFound
-import ru.netology.post.*
-import ru.netology.post.attachments.Attachments
-import ru.netology.post.attachments.Audio
-import ru.netology.post.attachments.AudioAttachment
+import ru.netology.wall.post.exceptions.CommentNotFoundException
+import ru.netology.wall.post.exceptions.PostNotFoundException
+import ru.netology.wall.post.exceptions.ReasonNotFound
+import ru.netology.wall.post.attachments.Attachments
+import ru.netology.wall.post.attachments.Audio
+import ru.netology.wall.post.attachments.AudioAttachment
+import ru.netology.wall.WallService
+import ru.netology.wall.post.*
 import kotlin.test.assertEquals
 
 class WallServiceTest {

@@ -1,6 +1,6 @@
-package ru.netology.post
+package ru.netology.wall.post
 
-import ru.netology.post.attachments.Attachments
+import ru.netology.wall.post.attachments.Attachments
 
 data class Post(
     var id: Int = 0, //Идентификатор записи.

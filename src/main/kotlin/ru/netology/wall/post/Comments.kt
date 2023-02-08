@@ -1,4 +1,4 @@
-package ru.netology.post
+package ru.netology.wall.post
 
 class Comments (
     var count: Int = 0, //количество комментариев

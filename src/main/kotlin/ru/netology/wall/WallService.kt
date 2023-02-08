@@ -1,12 +1,12 @@
-package ru.netology
+package ru.netology.wall
 
-import ru.netology.exceptions.CommentNotFoundException
-import ru.netology.exceptions.PostNotFoundException
-import ru.netology.exceptions.ReasonNotFound
-import ru.netology.post.Comment
-import ru.netology.post.Likes
-import ru.netology.post.Post
-import ru.netology.post.Report
+import ru.netology.wall.post.Comment
+import ru.netology.wall.post.Likes
+import ru.netology.wall.post.Post
+import ru.netology.wall.post.Report
+import ru.netology.wall.post.exceptions.CommentNotFoundException
+import ru.netology.wall.post.exceptions.PostNotFoundException
+import ru.netology.wall.post.exceptions.ReasonNotFound
 
 object WallService {
 

@@ -1,4 +1,4 @@
-package ru.netology.post
+package ru.netology.wall.post
 
 class Comment (
     var id: Int = 0, // Идентификатор комментария

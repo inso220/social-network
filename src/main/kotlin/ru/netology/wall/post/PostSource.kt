@@ -1,4 +1,4 @@
-package ru.netology.post
+package ru.netology.wall.post
 
 class PostSource(
     var type: String = "vk",

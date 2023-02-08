@@ -1,4 +1,4 @@
-package ru.netology.post
+package ru.netology.wall.post
 
 class Likes(
     var count: Int = 0, //число пользователей, которым понравилась запись

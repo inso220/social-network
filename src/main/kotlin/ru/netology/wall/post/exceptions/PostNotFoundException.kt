@@ -1,4 +1,4 @@
-package ru.netology.exceptions
+package ru.netology.wall.post.exceptions
 
 import java.lang.RuntimeException
 
