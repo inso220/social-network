@@ -1,5 +1,7 @@
 package ru.netology
 
+import ru.netology.chats.ChatMessage
+import ru.netology.chats.ChatService
 import ru.netology.notes.NoteComment
 import ru.netology.notes.Notes
 import ru.netology.notes.NotesService
@@ -65,6 +67,24 @@ fun main() {
 //    NotesService.getComments()
 
 //    println(NotesService.getCommentsOfNote(1))
+
+
+
+//    ChatService.add(100, ChatMessage())
+//    ChatService.add(10, ChatMessage(text = "Hi"))
+//    ChatService.add(1, ChatMessage(text = "Morning"))
+//    ChatService.addMessage(100, ChatMessage(text = "1111111"))
+//    ChatService.addMessage(100, ChatMessage(text = "2222222"))
+//    ChatService.addMessage(100, ChatMessage(text = "333333"))
+//    ChatService.deleteMessage(5)
+//    ChatService.delete(10)
+//    ChatService.printChats()
+//    ChatService.getMessagesReadList(100, 1, 3)
+//    ChatService.delete(100)
+//    ChatService.editMessage(3, "Good morning")
+//    ChatService.getChatList()
+//    println(ChatService.getUnreadChatsCount())
+
 
 }
 
