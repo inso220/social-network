@@ -129,22 +129,15 @@ class ChatServiceTest {
         val result = ChatService.editMessage(2, "Good morning")
     }
 
-//    @Test
-//    fun getMessagesReadList() {
-//        val message = ChatMessage (text = "Hello")
-//        val message2 = ChatMessage (text = "Hi")
-//        ChatService.add(100, message)
-//        ChatService.add(100, message2)
-//        val result = ChatService.getMessagesReadList(100, 1, 1)
-//        assertEquals(result, "true")
-//    }
-
-    @Test(expected = MessageIsNotExistException::class)
-    fun shouldThrowGetMessagesReadList() {
+    @Test
+    fun getMessagesReadList() {
         val message = ChatMessage (text = "Hello")
         val message2 = ChatMessage (text = "Hi")
         ChatService.add(100, message)
         ChatService.add(100, message2)
-        val result = ChatService.getMessagesReadList(100, 3, 2)
+        val result = ChatService.getMessagesReadList(100, 1, 2)
+        assertEquals(result, listOf(message, message2))
     }
+
+
 }

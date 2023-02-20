@@ -22,28 +22,16 @@ object ChatService {
         return chats.size
     }
 
-    fun getMessagesReadList(userId: Int, messageId: Int, messageCount: Int) { //список сообщений из чата, указав: ID чата; ID последнего сообщения, начиная с которого нужно подгрузить более новые; количество сообщений.
-        var count = 0
-        chats.forEach { (key, value) -> // определение индекса сообщения по id
-            if (userId == key) {
-                value.messages.map {
-                    if (it.id == messageId) {
-                        return@forEach
-                    }
-                    count++
-                }
-                throw MessageIsNotExistException("Message $messageId do not exist in this chat")
+
+    fun getMessagesReadList (userId: Int, messageId: Int, messageCount: Int): List<ChatMessage> {
+        return chats[userId]?.messages?.let { message ->
+            val index = message.indexOfFirst { it.id == messageId }
+            if (index + messageCount <= message.size) {
+                message.slice(index until index + messageCount).onEach { it.read = true }
+            } else {
+                message.slice(index until message.size).onEach { it.read = true }
             }
-        }
-        chats.forEach { (key, value) -> // вывод нужного количества сообщений с пометкой "прочитан"
-            if (userId == key) {
-                if (count + messageCount <= value.messages.size) {
-                    value.messages.slice(count until count + messageCount).map { it.read = true; println(it) }
-                } else {
-                    value.messages.slice(count until value.messages.size).map { it.read = true; println(it) }
-                }
-            }
-        }
+        } ?: emptyList()
     }
 
     fun getUnreadChatsCount(): Int { // количество непрочитанных чатов
